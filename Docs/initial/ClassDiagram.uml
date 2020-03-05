@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="282.0" y="1024.0">pizzashop.gui.OrdersGUI</node>
+    <node x="826.0" y="0.0">pizzashop.model.MenuDataModel</node>
+    <node x="755.0" y="1024.0">pizzashop.model.PaymentType</node>
+    <node x="586.5" y="0.0">pizzashop.service.PaymentOperation</node>
+    <node x="0.0" y="708.0">pizzashop.controller.KitchenGUIController</node>
+    <node x="517.0" y="708.0">pizzashop.service.PizzaService</node>
+    <node x="0.0" y="0.0">pizzashop.controller.OrdersGUIController</node>
+    <node x="276.0" y="708.0">pizzashop.repository.PaymentRepository</node>
+    <node x="548.0" y="147.0">pizzashop.service.PaymentAlert</node>
+    <node x="916.0" y="1024.0">pizzashop.gui.KitchenGUI</node>
+    <node x="331.0" y="0.0">pizzashop.controller.MainGUIController</node>
+    <node x="0.0" y="1024.0">pizzashop.model.Payment</node>
+    <node x="878.0" y="708.0">pizzashop.repository.MenuRepository</node>
+    <node x="569.0" y="1024.0">pizzashop.Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pizzashop.service.PaymentAlert" target="pizzashop.service.PaymentOperation">
+      <point x="0.0" y="-101.5" />
+      <point x="0.0" y="48.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.37714285714285717" x="562.5" y="592.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
