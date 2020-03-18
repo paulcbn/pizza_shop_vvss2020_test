@@ -2,24 +2,15 @@ package pizzashop.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import  javafx.scene.control.Button;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
-import javafx.scene.text.FontWeight;
 import pizzashop.gui.OrdersGUI;
 import pizzashop.service.PizzaService;
-
-import static javafx.scene.paint.Color.DARKBLUE;
 
 
 public class MainGUIController  {
@@ -53,7 +44,7 @@ public class MainGUIController  {
 
     PizzaService service;
 
-    public MainGUIController(){}
+    
 
     public void setService(PizzaService service){
         this.service=service;

@@ -2,40 +2,47 @@ package pizzashop.service;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import org.apache.log4j.Logger;
 import pizzashop.model.PaymentType;
 
 import java.util.Optional;
 
 public class PaymentAlert implements PaymentOperation {
     private PizzaService service;
+    static final Logger logger = Logger.getLogger(PaymentAlert.class);
 
-    public PaymentAlert(PizzaService service){
-        this.service=service;
+    private static final String BAR = "--------------------------";
+
+    public PaymentAlert(PizzaService service) {
+        this.service = service;
     }
 
     @Override
     public void cardPayment() {
-        System.out.println("--------------------------");
-        System.out.println("Paying by card...");
-        System.out.println("Please insert your card!");
-        System.out.println("--------------------------");
+        logger.info(BAR);
+        logger.info("Paying by card...");
+        logger.info("Please insert your card!");
+        logger.info(BAR);
     }
+
     @Override
     public void cashPayment() {
-        System.out.println("--------------------------");
-        System.out.println("Paying cash...");
-        System.out.println("Please show the cash...!");
-        System.out.println("--------------------------");
+        logger.info(BAR);
+        logger.info("Paying cash...");
+        logger.info("Please show the cash...!");
+        logger.info(BAR);
     }
+
     @Override
     public void cancelPayment() {
-        System.out.println("--------------------------");
-        System.out.println("Payment choice needed...");
-        System.out.println("--------------------------");
+        logger.info(BAR);
+        logger.info("Payment choice needed...");
+        logger.info(BAR);
     }
-      public void showPaymentAlert(int tableNumber, double totalAmount ) {
+
+    public void showPaymentAlert(int tableNumber, double totalAmount) {
         Alert paymentAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        paymentAlert.setTitle("Payment for Table "+tableNumber);
+        paymentAlert.setTitle("Payment for Table " + tableNumber);
         paymentAlert.setHeaderText("Total amount: " + totalAmount);
         paymentAlert.setContentText("Please choose payment option");
         ButtonType cardPayment = new ButtonType("Pay by Card");
@@ -43,14 +50,16 @@ public class PaymentAlert implements PaymentOperation {
         ButtonType cancel = new ButtonType("Cancel");
         paymentAlert.getButtonTypes().setAll(cardPayment, cashPayment, cancel);
         Optional<ButtonType> result = paymentAlert.showAndWait();
-        if (result.get() == cardPayment) {
+        if (!result.isPresent())
+            cancelPayment();
+        else if (result.get() == cardPayment) {
             cardPayment();
-            service.addPayment(tableNumber, PaymentType.Card,totalAmount);
+            service.addPayment(tableNumber, PaymentType.CARD, totalAmount);
         } else if (result.get() == cashPayment) {
             cashPayment();
-            service.addPayment(tableNumber, PaymentType.Cash,totalAmount);
+            service.addPayment(tableNumber, PaymentType.CASH, totalAmount);
         } else if (result.get() == cancel) {
-             cancelPayment();
+            cancelPayment();
         } else {
             cancelPayment();
         }
