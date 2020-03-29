@@ -27,6 +27,12 @@ public class PizzaService {
     }
 
     public void addPayment(int table, PaymentType type, double amount) {
+        if (table < 1 || table > 8)
+            throw new IllegalArgumentException("Table codes have to be between 1 and 8 inclusive.");
+
+        if (amount <= 0)
+            throw new IllegalArgumentException("Payment mount have to be greater than or equal to 1.");
+
         Payment payment = new Payment(table, type, amount);
         payRepo.add(payment);
     }
