@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PizzaServiceTest {
+class PizzaServiceBBTTest {
 
     private final String filename = "test_payments.txt";
     private PaymentRepository paymentRepository;
@@ -168,6 +168,7 @@ class PizzaServiceTest {
             @DisplayName("TC08_BVA: Above the lower boundary (1).")
             void bellowTheLowerBoundary() {
                 pizzaService.addPayment(1, PaymentType.CASH, 1);
+
                 assertTrue(checkRepoContainsPayment(1, PaymentType.CASH, 1));
             }
 
