@@ -51,7 +51,7 @@ class PaymentRepositoryMockTest {
     }
 
     @Test
-    void test_add_happy_flow() {
+    void testAddHappyFlow() {
         Mockito.when(payment.toString()).thenReturn("0,CARD,12");
 
         repository.add(payment);
@@ -61,7 +61,7 @@ class PaymentRepositoryMockTest {
 
 
     @Test
-    void test_add_null_payment() {
+    void testAddNullPayment() {
         Mockito.when(payment.toString()).thenThrow(NullPointerException.class);
 
         assertThrows(NullPointerException.class, () -> repository.add(payment));

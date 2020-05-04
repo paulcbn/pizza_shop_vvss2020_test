@@ -26,7 +26,7 @@ class PizzaServiceMockTest {
     }
 
     @Test
-    void test_add_happy_flow() {
+    void testAddHappyFlow() {
         Mockito.doNothing().when(paymentRepository).add(Mockito.any());
 
         service.addPayment(1, PaymentType.CASH, 20.35);
@@ -39,7 +39,7 @@ class PizzaServiceMockTest {
     }
 
     @Test
-    void test_add_negative_amount() {
+    void testAddNegativeAmount() {
         Mockito.doNothing().when(paymentRepository).add(Mockito.any());
 
         assertThrows(IllegalArgumentException.class, () -> service.addPayment(1, PaymentType.CASH, -20.35));
