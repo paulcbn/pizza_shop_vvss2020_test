@@ -3,9 +3,6 @@ package integration;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
@@ -16,17 +13,14 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
-class PaymentRepositoryIntegrationTest {
+class PaymentIntegrationTest {
 
     private final String filename = "test_payments.txt";
     private PaymentRepository paymentRepository;
     private PizzaService pizzaService;
 
-    @Mock
-    private Payment payment1, payment2;
-
+    Payment payment1,payment2;
     private void refreshInputFile() throws IOException {
         ClassLoader classLoader = PaymentRepository.class.getClassLoader();
         File inputFile = new File(classLoader.getResource(filename).getFile());
@@ -48,18 +42,13 @@ class PaymentRepositoryIntegrationTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        MockitoAnnotations.initMocks(this);
         refreshInputFile();
         paymentRepository = new PaymentRepository(filename);
         MenuRepository menuRepository = new MenuRepository();
         pizzaService = new PizzaService(menuRepository, paymentRepository);
-        Mockito.when(payment1.getTableNumber()).thenReturn(1);
-        Mockito.when(payment1.getAmount()).thenReturn(100.0);
-        Mockito.when(payment1.getType()).thenReturn(PaymentType.CASH);
+        payment1 = new Payment(1,PaymentType.CASH,100.0);
+        payment2 = new Payment(2,PaymentType.CASH,44.0);
 
-        Mockito.when(payment2.getTableNumber()).thenReturn(2);
-        Mockito.when(payment2.getAmount()).thenReturn(44.0);
-        Mockito.when(payment2.getType()).thenReturn(PaymentType.CASH);
     }
 
     @AfterEach
