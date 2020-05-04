@@ -1,8 +1,8 @@
 package integration;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -14,9 +14,6 @@ import pizzashop.service.PizzaService;
 
 import java.io.File;
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 class PaymentRepositoryIntegrationTest {
 
@@ -74,8 +71,9 @@ class PaymentRepositoryIntegrationTest {
         assert (pizzaService.getTotalAmount(PaymentType.CASH) == 144.0);
 
     }
+
     @Test
-    void testAdd(){
+    void testAdd() {
         assert (pizzaService.getPayments().size() == 0);
         assert (paymentRepository.getAll().size() == 0);
         paymentRepository.add(payment1);

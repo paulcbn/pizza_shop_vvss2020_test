@@ -20,7 +20,8 @@ class PaymentIntegrationTest {
     private PaymentRepository paymentRepository;
     private PizzaService pizzaService;
 
-    Payment payment1,payment2;
+    Payment payment1, payment2;
+
     private void refreshInputFile() throws IOException {
         ClassLoader classLoader = PaymentRepository.class.getClassLoader();
         File inputFile = new File(classLoader.getResource(filename).getFile());
@@ -46,8 +47,8 @@ class PaymentIntegrationTest {
         paymentRepository = new PaymentRepository(filename);
         MenuRepository menuRepository = new MenuRepository();
         pizzaService = new PizzaService(menuRepository, paymentRepository);
-        payment1 = new Payment(1,PaymentType.CASH,100.0);
-        payment2 = new Payment(2,PaymentType.CASH,44.0);
+        payment1 = new Payment(1, PaymentType.CASH, 100.0);
+        payment2 = new Payment(2, PaymentType.CASH, 44.0);
 
     }
 
@@ -63,8 +64,9 @@ class PaymentIntegrationTest {
         assert (pizzaService.getTotalAmount(PaymentType.CASH) == 144.0);
 
     }
+
     @Test
-    void testAdd(){
+    void testAdd() {
         assert (pizzaService.getPayments().size() == 0);
         assert (paymentRepository.getAll().size() == 0);
         paymentRepository.add(payment1);
